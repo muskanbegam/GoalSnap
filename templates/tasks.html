@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Pending Tasks | GoalSnap{% endblock %}
+
+{% block content %}
+<div class="px-6 md:px-10 lg:px-20 py-10 w-[84vw] ml-[15vw]">
+  <h2 class="text-2xl font-semibold mb-6 text-gray-800">Pending Tasks</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    
+    <!-- Task Card 1 -->
+    <div class="border border-gray-200 rounded-md p-4 bg-white hover:shadow-sm transition">
+      <h3 class="text-lg font-semibold text-gray-900 mb-1">Build Login System</h3>
+      <p class="text-sm text-gray-600 mb-2">Due: Aug 1, 2025</p>
+      <p class="text-gray-700 mb-2">Implement user authentication using Flask and secure sessions.</p>
+      <p class="text-sm text-gray-500"><strong>Tech:</strong> Python, Flask, Sessions</p>
+      <button class="mt-3 bg-blue-600 text-white px-4 py-1.5 text-sm rounded hover:bg-blue-700">Start Task</button>
+    </div>
+
+    <!-- Task Card 2 -->
+    <div class="border border-gray-200 rounded-md p-4 bg-white hover:shadow-sm transition">
+      <h3 class="text-lg font-semibold text-gray-900 mb-1">Set Up Database Models</h3>
+      <p class="text-sm text-gray-600 mb-2">Due: Aug 2, 2025</p>
+      <p class="text-gray-700 mb-2">Define your data models using SQLAlchemy and connect to PostgreSQL.</p>
+      <p class="text-sm text-gray-500"><strong>Tech:</strong> SQLAlchemy, PostgreSQL</p>
+      <button class="mt-3 bg-blue-600 text-white px-4 py-1.5 text-sm rounded hover:bg-blue-700">Start Task</button>
+    </div>
+
+    <!-- Task Card 3 -->
+    <div class="border border-gray-200 rounded-md p-4 bg-white hover:shadow-sm transition">
+      <h3 class="text-lg font-semibold text-gray-900 mb-1">Create Project Submission Page</h3>
+      <p class="text-sm text-gray-600 mb-2">Due: Aug 3, 2025</p>
+      <p class="text-gray-700 mb-2">Build a frontend form where users can submit their completed projects.</p>
+      <p class="text-sm text-gray-500"><strong>Tech:</strong> HTML, Tailwind CSS, Flask</p>
+      <button class="mt-3 bg-blue-600 text-white px-4 py-1.5 text-sm rounded hover:bg-blue-700">Start Task</button>
+    </div>
+
+    <!-- Task Card 4 -->
+    <div class="border border-gray-200 rounded-md p-4 bg-white hover:shadow-sm transition">
+      <h3 class="text-lg font-semibold text-gray-900 mb-1">Integrate Image Upload</h3>
+      <p class="text-sm text-gray-600 mb-2">Due: Aug 4, 2025</p>
+      <p class="text-gray-700 mb-2">Add image upload functionality to allow users to showcase visual results.</p>
+      <p class="text-sm text-gray-500"><strong>Tech:</strong> Flask-Uploads, WTForms</p>
+      <button class="mt-3 bg-blue-600 text-white px-4 py-1.5 text-sm rounded hover:bg-blue-700">Start Task</button>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

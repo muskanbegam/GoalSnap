@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="w-[80vw] ml-[18vw] pt-6">
+  <!-- Top Bar -->
+  <div class="flex justify-between items-center mb-8 w-full flex-wrap gap-4 ">
+    <!-- Search Bar -->
+    <input
+      type="text"
+      placeholder="Search your task list..."
+      class="w-full md:w-[300px] px-4 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 transition text-sm"
+    />
+
+    <!-- Learn Button -->
+    <button
+      class="px-5 py-3 bg-gray-800 text-white hover:bg-gray-700 transition text-sm"
+    >
+      What do you want to learn?
+    </button>
+  </div>
+
+  <!-- Task Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    {% for task in [
+      {
+        'title': 'Learned Python Basics',
+        'date': 'Jul 20, 2025',
+        'desc': 'Understood variables, loops, and functions.',
+        'tech': ['Python']
+      },
+      {
+        'title': 'Built First Flask App',
+        'date': 'Jul 22, 2025',
+        'desc': 'Created a simple web app using Flask framework.',
+        'tech': ['Python', 'Flask']
+      },
+      {
+        'title': 'Styled with Tailwind CSS',
+        'date': 'Jul 23, 2025',
+        'desc': 'Redesigned frontend with responsive styling.',
+        'tech': ['HTML', 'Tailwind CSS']
+      },
+      {
+        'title': 'Connected PostgreSQL DB',
+        'date': 'Jul 25, 2025',
+        'desc': 'Integrated backend with PostgreSQL using ORM.',
+        'tech': ['SQLAlchemy', 'PostgreSQL']
+      },
+      {
+        'title': 'Deployed on Render',
+        'date': 'Jul 28, 2025',
+        'desc': 'Successfully deployed a full-stack web app.',
+        'tech': ['Render', 'Gunicorn']
+      }
+    ] %}
+    <div class="bg-white p-6 shadow-sm border border-gray-200 min-h-[200px] flex flex-col justify-between">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-900 mb-1">{{ task.title }}</h2>
+        <p class="text-sm text-gray-600 mb-2">Completed: {{ task.date }}</p>
+        <p class="text-sm text-gray-700 mb-2">{{ task.desc }}</p>
+        <p class="text-xs text-gray-500">
+          <strong class="text-gray-600">Tech:</strong>
+          {{ task.tech | join(', ') }}
+        </p>
+      </div>
+      <button class="mt-4 text-sm px-4 py-2 bg-gray-800 text-white hover:bg-gray-700 transition self-start">
+        Edit Post
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endblock %}
