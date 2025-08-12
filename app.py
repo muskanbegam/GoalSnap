@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = "muskanbegam"
 
 #config database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///user.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:muskan@localhost/goalsnap_db"
 app.config["SQLALCHEMY_TRACK_MODIFICATION"] = False
 
 #create database
@@ -14,15 +14,20 @@ db = SQLAlchemy(app)
 
 #Database mODEL
 class User(db.Model):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(25), unique= True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
+    password_hash = db.Column(db.String(200), nullable=False)
+    
+    def __init__(self,email,password):
+        self.email = email
+        self.set_password(password)
     
     def set_password(self,password):
-        self.password = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
         
     def check_password(self,password):
-        return check_password_hash(self.password,password)
+        return check_password_hash(self.password_hash,password)
     
     
 @app.route('/')
@@ -38,7 +43,7 @@ def auth(page):
         email = request.form['email']
         password = request.form['password']
         print(email,password)
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email = email).first()
         print(user)
 
         if page == "login" :
@@ -51,12 +56,11 @@ def auth(page):
             if user:
                 return render_template("dashboard.html", error="User already exists")
             else:
-                new_user = User(email = email)
-                new_user.set_password(password)
+                new_user = User(email,password)
                 db.session.add(new_user)
                 db.session.commit()
                 session['email'] = email
-                return redirect('auth', page='login')  
+                return redirect('auth')  
     return render_template('auth.html') 
  
 
